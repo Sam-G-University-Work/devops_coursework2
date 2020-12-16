@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Clone Git Repository') {
 		steps {
-			git([url: 'https://github.com/onepoint16/coursework2.git', branch: 'main', credentialsId: 'github_id'])}}
+			git([url: 'https://github.com/onepoint16/coursework2.git', branch: 'main', credentialsId: 'Git'])}}
 
       stage('Start Sonarqube Scanner') {
           environment {
