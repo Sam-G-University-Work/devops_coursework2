@@ -1,6 +1,6 @@
 pipeline {
     environment {
-     imageID = "onepoint16/cw2"
+     imageID = "1point16/cw2"
      dockerCredentials = 'DockerLogin'
      dockerFile = ''   
     }
