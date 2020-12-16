@@ -25,7 +25,7 @@ pipeline {
         stage('Build Docker Image') {
                 steps{
                     script {
-                        dockerImage = docker.build imageID}}
+                        dockerFile = docker.build imageID}}
 				}
 	    
         stage('Push Image to DockerHub') {
@@ -34,11 +34,6 @@ pipeline {
 			docker.withRegistry( '', dockerCredentials ) {
 			dockerFile.push("$BUILD_NUMBER")
 			dockerFile.push('latest')}}}
-}
-        stage('Delete Old Image') {
-  		steps{
-	    		sh "docker rmi $imagename:$BUILD_NUMBER"
-  }
 }
         stage ('Deploy Changes to Minikube') {
      		steps{
