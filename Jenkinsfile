@@ -6,10 +6,13 @@ pipeline {
     }
     agent any
     stages {
+	    // Clones the up to date repository from GitHub using credentials stored in Jenkins
         stage('Clone Git Repository') {
 		steps {
 			git([url: 'https://github.com/onepoint16/coursework2.git', branch: 'main', credentialsId: 'Git'])}}
 
+	    
+	    // SonnarQube Scanner is started and configured with credentials set in Jenkins
       stage('Start Sonarqube Scanner') {
           environment {
               scannerHome = tool 'SonarQubeScanner'
@@ -22,12 +25,16 @@ pipeline {
           }
       }
 
+	    
+	    // Builds docker file using variable set above
         stage('Build Docker Image') {
                 steps{
                     script {
                         dockerFile = docker.build imageID}}
 				}
 	    
+	    
+	    // Pushes the new build to the DockerHub Repository useing the variables from above
         stage('Push Image to DockerHub') {
 		steps{
 		    script {
@@ -35,6 +42,8 @@ pipeline {
 			dockerFile.push("$BUILD_NUMBER")
 			dockerFile.push('latest')}}}
 }
+	    
+	    // Changes are then deployed to the nodes within kubernetes cluster
         stage ('Deploy Changes to Minikube') {
      		steps{
          		script {
