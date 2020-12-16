@@ -48,7 +48,7 @@ pipeline {
      		steps{
          		script {
 			echo 'Using remote command over ssh'
-			sh 'ssh ubuntu@54.90.40.166 kubectl set image deployments/coursework2 cw2=onepoint16/coursework2:"$BUILD_NUMBER"'}
+			sh 'ssh ubuntu@54.90.40.166 kubectl set image deployments/coursework2 cw2=1point16/coursework2:"$BUILD_NUMBER"'}
      }
     }
       
