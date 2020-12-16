@@ -1,7 +1,7 @@
 pipeline {
     environment {
      imageID = "onepoint16/cw2"
-     dockerCredentials = 'dockerhub_id'
+     dockerCredentials = 'DockerLogin'
      dockerFile = ''   
     }
     agent any
