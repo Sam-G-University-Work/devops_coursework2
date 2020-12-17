@@ -9,13 +9,13 @@ pipeline {
 	    // Clones the up to date repository from GitHub using credentials stored in Jenkins
         stage('Clone Git Repository') {
 		steps {
-			git([url: 'https://github.com/onepoint16/coursework2.git', branch: 'main', credentialsId: 'Git'])}}
+			git([url: 'https://github.com/onepoint16/coursework2.git', branch: 'main', credentialsId: 'GitHub'])}}
 
 	    
 	    // SonnarQube Scanner is started and configured with credentials set in Jenkins
       stage('Start Sonarqube Scanner') {
           environment {
-              scannerHome = tool 'SonarQubeScanner'
+              scannerHome = tool 'SonarScanner'
                 }
         
           steps {
